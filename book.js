@@ -30,3 +30,23 @@ document.getElementById('contentsButton').addEventListener('click',()=>turn('con
 next.addEventListener('click',()=>turn(view==='contents'?1:view===0?'contents':view===21?'contents':view+1));
 previous.addEventListener('click',()=>{if(view==='contents')turn(0);else if(view===1)turn('contents');else if(view>0)turn(view-1);});
 document.addEventListener('keydown',e=>{if(reader.hidden||e.target.closest('.letter-scroll')||e.target.tagName==='BUTTON')return;if(e.key==='ArrowRight'){e.preventDefault();next.click();}if(e.key==='ArrowLeft'){e.preventDefault();previous.click();}});
+// The welcome never waits for an image, font, or network request.
+const arrival=document.getElementById('arrival');
+const reduceMotion=matchMedia('(prefers-reduced-motion: reduce)');
+let arrivalFinished=false;
+function finishArrival(){
+ if(arrivalFinished)return;arrivalFinished=true;
+ const skipHadFocus=document.activeElement===document.getElementById('skipArrival');
+ arrival.hidden=true;
+ document.body.classList.remove('arriving');
+ document.body.classList.add('gift-reveal');
+ if(skipHadFocus)document.getElementById('cover').focus({preventScroll:true});
+ setTimeout(()=>document.body.classList.remove('gift-reveal'),1800);
+}
+if(reduceMotion.matches){arrival.hidden=true;arrivalFinished=true;}
+else{
+ document.body.classList.add('arriving');
+ setTimeout(finishArrival,3300);
+ document.getElementById('skipArrival').addEventListener('click',finishArrival);
+ arrival.addEventListener('animationend',e=>{if(e.target===arrival)finishArrival();});
+}
