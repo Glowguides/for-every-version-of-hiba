@@ -1,5 +1,5 @@
 const chapters = [
-{title:'receive this', subtitle:'so I guess that means… now.', note:'happy birthday, Hiba ♡\nI know I’m a little late.', body:[], poem:''},
+{title:'you receive this', subtitle:'so I guess that means… now.', note:'happy birthday, Hiba ♡\nI know I’m a little late.', body:[], poem:''},
 {title:'you’re sad',subtitle:'you can put the brave face down.',note:'no fixing required. just a little company.',body:[
 'Hiba,',
 'Come here. Even if “here” is only a page for now.',
